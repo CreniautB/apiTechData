@@ -1,23 +1,27 @@
 const express = require("express");
 const cors = require("cors");
-const fetch = require("fetch");
-const app = express();
-const event = require("./event");
-const video = require("./video");
 const axios = require("axios");
 const xml2js = require("xml2js");
-const fs = require("fs");
+
+const event = require("./event");
+const articleBlog = require("./articleBlog");
+
+const app = express();
 
 const corsOptions = {
   origin: "*",
-  credentials: true, //access-control-allow-credentials:true
+  credentials: true,
   optionSuccessStatus: 200,
 };
 
-app.use(cors(corsOptions)); // Use this after the variable declaration
+app.use(cors(corsOptions));
 
 app.get("/event", (req, res) => {
   res.json(event);
+});
+
+app.get("/articleBlog", (req, res) => {
+  res.json(articleBlog);
 });
 
 app.get("/video", (req, res) => {
